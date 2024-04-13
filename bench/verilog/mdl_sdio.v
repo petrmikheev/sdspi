@@ -305,8 +305,6 @@ module	mdl_sdio #(
 			ocr[7] <= 1'b0;
 			if (!cmd8_sent)
 			begin
-				if (OPT_HIGH_CAPACITY)
-					ocr[30] <= 1'b1;
 				if (OPT_DUAL_VOLTAGE)
 					ocr[7] <= 1'b1;
 				cmd8_sent <= 1'b1;
@@ -332,7 +330,7 @@ module	mdl_sdio #(
 				reply <= 6'd19;
 				reply_data <= { {(120-32){1'b0}}, R1};
 
-				read_posn <= cmd_arg;
+				read_posn <= ocr[30] ? (cmd_arg * 128) : (cmd_arg / 4);
 				rx_addr <= 0;
 			end end
 			// }}}
@@ -345,7 +343,7 @@ module	mdl_sdio #(
 				reply_data <= { {(120-32){1'b0}}, R1};
 
 				pending_read <= 1'b1;
-				read_posn <= cmd_arg;
+				read_posn <= ocr[30] ? (cmd_arg * 128) : (cmd_arg / 4);
 				rx_addr <= 0;
 			end end
 			// }}}
