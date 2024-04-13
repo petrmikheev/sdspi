@@ -73,7 +73,7 @@ module	sdwb #(
 		parameter [0:0]	OPT_DDR = 1'b0,
 		parameter [0:0]	OPT_CARD_DETECT = 1'b1,
 		parameter [0:0]	OPT_EMMC = 1'b1,
-		localparam	LGFIFOW=LGFIFO-$clog2(MW/8),
+		parameter	LGFIFOW=LGFIFO-$clog2(MW/8),
 		parameter [0:0]	OPT_DMA = 1'b0,
 		parameter [0:0]	OPT_1P8V= 1'b0,	// 1.8V voltage switch capable?
 		// OPT_R1B, if set, adds logic to the controller to only expect

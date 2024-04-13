@@ -171,9 +171,6 @@ module	sdfrontend #(
 		assign	next_dedge = next_pedge || (i_cfg_ddr
 					&& last_ck && !i_sdclk[7]);
 
-		always @(posedge i_clk)
-			last_ck <= i_sdclk[7];
-
 		// sample_ck
 		// {{{
 		initial	ck_sreg = 0;
